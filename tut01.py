@@ -1,16 +1,16 @@
 import pandas as pd
 import os
 
-# ========= CONFIG =========
-INPUT_FILE = "students.xlsx"          # Input Excel file with student data
-BRANCH_FOLDER = "full_branch_wise"    # Output folder for branch-wise split
-MIX_FOLDER = "group_branch_wise_mix"  # Output folder for mixed groups
-UNIFORM_FOLDER = "group_uniform_mix"  # Output folder for uniform groups
-FINAL_OUTPUT = "output.xlsx"          # Final stats Excel file
-# ===========================
+
+INPUT_FILE = "students.xlsx"          
+BRANCH_FOLDER = "full_branch_wise"    
+MIX_FOLDER = "group_branch_wise_mix" 
+UNIFORM_FOLDER = "group_uniform_mix"  
+FINAL_OUTPUT = "output.xlsx"         
 
 
-# ---------------- CODE 1 ----------------
+
+
 def students_branch_wise(file_path, output_folder=BRANCH_FOLDER):
     df = pd.read_excel(file_path)
 
@@ -29,7 +29,7 @@ def students_branch_wise(file_path, output_folder=BRANCH_FOLDER):
         print(f"[Code1] Saved {output_path}")
 
 
-# ---------------- CODE 2 ----------------
+
 def students_group_mix(branch_folder=BRANCH_FOLDER,
                        output_folder=MIX_FOLDER,
                        num_groups=3):
@@ -68,8 +68,7 @@ def students_group_mix(branch_folder=BRANCH_FOLDER,
         print(f"[Code2] Saved {output_folder}/g{i}.csv (total={len(gdf)})")
 
 
-# ---------------- CODE 3 (your version) ----------------
-# ---------------- CODE 3 (updated uniform version) ----------------
+
 def students_group_uniform(branch_folder=BRANCH_FOLDER,
                            output_folder=UNIFORM_FOLDER,
                            num_groups=3):
@@ -125,7 +124,7 @@ def students_group_uniform(branch_folder=BRANCH_FOLDER,
             print(f"[Code3] Saved {output_folder}/g{i}.csv (total={len(gdf)})")
 
 
-# ---------------- CODE 4 (your version) ----------------
+# function
 def generate_branch_stats(input_folder):
     group_files = [f for f in os.listdir(input_folder) if f.endswith(".csv")]
     if not group_files:
@@ -184,9 +183,9 @@ def Generate_output(mix_folder=MIX_FOLDER, uniform_folder=UNIFORM_FOLDER, output
     print(f"[Code4] Stats saved to {output_excel} (sheet=Stats)")
 
 
-# ---------------- PIPELINE RUN ----------------
+
 if __name__ == "__main__":
-    print("🚀 Starting full pipeline...")
+    
 
     # ask user input
     num_groups = int(input("Enter number of groups: "))
@@ -196,4 +195,5 @@ if __name__ == "__main__":
     students_group_uniform(BRANCH_FOLDER, UNIFORM_FOLDER, num_groups)
     Generate_output(MIX_FOLDER, UNIFORM_FOLDER, FINAL_OUTPUT)
 
-    print("✅ Pipeline completed! All folders/files generated.")
+    print("All folders/files generated.")
+
